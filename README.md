@@ -10,9 +10,6 @@ $ pip install -r requirements.txt
 
 ## Starting development server
 
-```bash
-$ redis-server 
-```
 
 ```bash
 $ python manage.py runserver 
