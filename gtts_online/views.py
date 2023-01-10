@@ -7,7 +7,6 @@ from django.views.decorators.cache import cache_page
 def get_sound(request):
     text = request.GET.get('text')
     tl = request.GET.get('tl')
-    print("XD")
     if not text or not tl:
         return HttpResponse(
             "<html><body>"
