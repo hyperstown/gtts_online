@@ -123,6 +123,39 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+# Logging
+# https://docs.djangoproject.com/en/4.1/topics/logging/
+
+# TODO better logging :P
+if not DEBUG:
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': False,
+        'formatters': {
+            'django.server': {
+                '()': 'django.utils.log.ServerFormatter',
+                'format': '[{server_time}] {message}',
+                'style': '{',
+            }
+        },
+        'handlers': {
+            'file': {
+                'level': 'WARNING',
+                'class': 'logging.FileHandler',
+                'filename': 'server.log',
+                'formatter': 'django.server'
+            },
+        },
+        'loggers': {
+            'django': {
+                'handlers': ['file'],
+                'level': 'WARNING',
+                'propagate': True,
+            },
+        },
+    }
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
