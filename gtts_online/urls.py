@@ -23,7 +23,7 @@ urlpatterns = [
     path('sound', get_sound),
 ]
 
-if settings.DEBUG:
+if settings.ALLOW_ADMIN_PANEL:
     urlpatterns += [
         path('admin', admin.site.urls), # no need for admin panel
     ]

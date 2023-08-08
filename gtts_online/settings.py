@@ -30,9 +30,25 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool('DEBUG', default=False)
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[])
 
-CSRF_TRUSTED_ORIGINS= env.list('CSRF_TRUSTED_ORIGINS', default=[])
+CSRF_TRUSTED_ORIGINS = env.list('CSRF_TRUSTED_ORIGINS', default=[])
+
+# SSL specific
+# See https://docs.djangoproject.com/en/4.2/topics/security/
+
+# https://docs.djangoproject.com/en/4.2/ref/middleware/#http-strict-transport-security
+SECURE_HSTS_SECONDS = 0 if DEBUG else 31536000 # 31536000 seconds = 1 year, set 3600 seconds for testing
+
+SECURE_HSTS_INCLUDE_SUBDOMAINS = not DEBUG
+
+SECURE_HSTS_PRELOAD = not DEBUG
+
+SESSION_COOKIE_SECURE = not DEBUG
+
+CSRF_COOKIE_SECURE = not DEBUG
+
+SECURE_SSL_REDIRECT = not DEBUG
 
 
 # Application definition
@@ -128,3 +144,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+ALLOW_ADMIN_PANEL = env.bool('ALLOW_ADMIN_PANEL', default=False)
